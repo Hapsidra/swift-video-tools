@@ -1,6 +1,5 @@
 //
 // Created by Максим Ефимов on 11.05.2018.
-// Copyright (c) 2018 Platforma. All rights reserved.
 //
 
 import AVFoundation
@@ -79,46 +78,4 @@ public func processVideo(url: URL, processLayer: @escaping (CALayer) -> (), comp
             print("export error")
         }
     })
-}
-
-public func saveVideoToLibrary(_ url: URL, useAssetsLibrary: Bool = false, completion: @escaping (URL?) -> ()) {
-    print(#function)
-    if PHPhotoLibrary.authorizationStatus() == .authorized {
-        print("authorized")
-        if useAssetsLibrary {
-            ALAssetsLibrary().writeVideoAtPath(toSavedPhotosAlbum: url) { url, error in
-                if error != nil {
-                    print("error", error!)
-                    completion(nil)
-                } else if url != nil {
-                    completion(url)
-                } else {
-                    completion(nil)
-                }
-            }
-        } else {
-            PHPhotoLibrary.shared().performChanges({
-                PHAssetChangeRequest.creationRequestForAssetFromVideo(atFileURL: url)
-            }) { saved, error in
-                if saved {
-                    completion(url)
-                } else if error != nil {
-                    print(error!.localizedDescription)
-                    completion(nil)
-                }
-            }
-        }
-    }
-    else if PHPhotoLibrary.authorizationStatus() == .denied {
-        completion(nil)
-    }
-    else {
-        PHPhotoLibrary.requestAuthorization { status in
-            if status == .authorized {
-                saveVideoToLibrary(url, completion: completion)
-            } else {
-                completion(nil)
-            }
-        }
-    }
 }

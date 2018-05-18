@@ -20,12 +20,6 @@ it, simply add the following line to your Podfile:
 pod 'SwiftVideoTools'
 ```
 
-Add following code into your info.plist file if you use the "saveVideoToLibrary" function
-```
-<key>NSPhotoLibraryUsageDescription</key>
-<string>App would like to acces your photos.</string>
-```
-
 ## Author
 
 hapsidra, hapsidra@outlook.com
