@@ -21,7 +21,7 @@ pod 'SwiftVideoTools'
 ```
 
 Add following code into your info.plist file if you use the "saveVideoToLibrary" function
-```swift
+```
 <key>NSPhotoLibraryUsageDescription</key>
 <string>App would like to acces your photos.</string>
 ```
