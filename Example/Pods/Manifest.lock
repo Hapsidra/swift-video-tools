@@ -1,0 +1,16 @@
+PODS:
+  - SwiftVideoTools (0.1.0)
+
+DEPENDENCIES:
+  - SwiftVideoTools (from `../`)
+
+EXTERNAL SOURCES:
+  SwiftVideoTools:
+    :path: ../
+
+SPEC CHECKSUMS:
+  SwiftVideoTools: d820616568aac8299dd2f56323d54618163a8673
+
+PODFILE CHECKSUM: 49327618caed7322c668632bd12ba554f452b810
+
+COCOAPODS: 1.3.1

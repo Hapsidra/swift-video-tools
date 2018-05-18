@@ -1,0 +1,22 @@
+{
+  "name": "SwiftVideoTools",
+  "version": "0.1.0",
+  "summary": "A short description of SwiftVideoTools.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/hapsidra/SwiftVideoTools",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "hapsidra": "hapsidra@outlook.com"
+  },
+  "source": {
+    "git": "https://github.com/hapsidra/SwiftVideoTools.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source_files": "SwiftVideoTools/Classes/**/*"
+}
