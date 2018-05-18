@@ -7,7 +7,7 @@ import AVFoundation
 import AssetsLibrary
 import Photos
 
-func processVideo(url: URL, processLayer: @escaping (CALayer) -> (), completion: @escaping (URL) -> ()) {
+public func processVideo(url: URL, processLayer: @escaping (CALayer) -> (), completion: @escaping (URL) -> ()) {
     print(#function)
     let asset = AVAsset(url: url)
     let composition = AVMutableComposition()
@@ -81,7 +81,7 @@ func processVideo(url: URL, processLayer: @escaping (CALayer) -> (), completion:
     })
 }
 
-func saveVideoToLibrary(_ url: URL, useAssetsLibrary: Bool = false, completion: @escaping (URL?) -> ()) {
+public func saveVideoToLibrary(_ url: URL, useAssetsLibrary: Bool = false, completion: @escaping (URL?) -> ()) {
     print(#function)
     if PHPhotoLibrary.authorizationStatus() == .authorized {
         print("authorized")
