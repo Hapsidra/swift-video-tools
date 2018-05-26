@@ -64,7 +64,7 @@ public func processVideo(url: URL, processLayer: @escaping (CALayer) -> (), comp
         }
     }
 
-    let exportSession = AVAssetExportSession(asset: composition, presetName: AVAssetExportPresetLowQuality)!
+    let exportSession = AVAssetExportSession(asset: composition, presetName: AVAssetExportPresetMediumQuality)!
     exportSession.videoComposition = videoComposition
     exportSession.outputURL = outputUrl
     exportSession.outputFileType = AVFileType.mp4
@@ -79,3 +79,45 @@ public func processVideo(url: URL, processLayer: @escaping (CALayer) -> (), comp
         }
     })
 }
+
+/*
+ private func mergeVideoClips() {
+ let composition = AVMutableComposition()
+ let videoTrack = composition.addMutableTrack(withMediaType: AVMediaType.video, preferredTrackID: kCMPersistentTrackID_Invalid)
+ let audioTrack = composition.addMutableTrack(withMediaType: AVMediaType.audio, preferredTrackID: kCMPersistentTrackID_Invalid)
+ var time: Double = 0.0
+ 
+ for video in outputs {
+ let asset = AVAsset(url: video)
+ 
+ if let videoAssetTrack = asset.tracks(withMediaType: AVMediaType.video).first, let audioAssetTrack = asset.tracks(withMediaType: AVMediaType.audio).first {
+ let atTime = CMTime(seconds:time, preferredTimescale: 0)
+ do {
+ try videoTrack?.insertTimeRange(CMTimeRangeMake(kCMTimeZero, asset.duration), of: videoAssetTrack, at: atTime)
+ try audioTrack?.insertTimeRange(CMTimeRangeMake(kCMTimeZero, asset.duration), of: audioAssetTrack, at: atTime)
+ } catch {
+ print("something bad happend I don't want to talk about it")
+ }
+ 
+ time+=asset.duration.seconds
+ }
+ }
+ 
+ videoTrack?.preferredTransform = (videoTrack?.preferredTransform.rotated(by: .pi / 2))!
+ videoTrack?.preferredTransform = (videoTrack?.preferredTransform.scaledBy(x: 1, y: -1))!
+ 
+ let videoName = UUID().uuidString.appending(".mov")
+ let videoExporter = AVAssetExportSession(asset: composition, presetName: AVAssetExportPresetMediumQuality)
+ 
+ let outputURL = URL(fileURLWithPath: NSTemporaryDirectory().appending(videoName))
+ videoExporter?.outputURL = outputURL
+ videoExporter?.shouldOptimizeForNetworkUse = true
+ videoExporter?.outputFileType = AVFileType.mov
+ videoExporter?.exportAsynchronously(completionHandler: { () -> Void in
+ print("video exporting complete", outputURL)
+ DispatchQueue.main.async {
+ self.delegate?.swiftVideoRecorder(didCompleteRecordingWithUrl: outputURL)
+ }
+ })
+ }
+ */
